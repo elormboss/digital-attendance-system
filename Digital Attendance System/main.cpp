@@ -66,7 +66,8 @@ int main() {
         cout << "\n=== DIGITAL ATTENDANCE SYSTEM ===\n";
         cout << "1. Register Student\n";
         cout << "2. View Students\n";
-        cout << "3. Exit\n";
+        cout << "3. Create Lecture Session\n";
+        cout << "0. Exit\n";
         cout << "Enter choice: ";
         cin >> choice;
 
@@ -78,6 +79,10 @@ int main() {
                 viewStudents();
                 break;
             case 3:
+                session.createSession();
+                session.displaySession();
+                break;
+            case 4:
                 cout << "Exiting program...\n";
                 break;
             default:
@@ -87,4 +92,40 @@ int main() {
     } while (choice != 3);
 
     return 0;
+
 }
+#include <iostream>
+using namespace std;
+class AttendanceSession {
+public:
+    string courseCode;
+    string date;
+    string startTime;
+    int duration;
+
+    void createSession() {
+        cout << "Enter Course Code: ";
+        cin >> courseCode;
+
+        cout << "Enter Date: ";
+        cin >> date;
+
+        cout << "Enter Start Time: ";
+        cin >> startTime;
+
+        cout << "Enter Duration (Hours): ";
+        cin >> duration;
+    }
+
+    void displaySession() {
+        cout << "\nSession Created Successfully\n";
+        cout << "Course: " << courseCode << endl;
+        cout << "Date: " << date << endl;
+        cout << "Start Time: " << startTime << endl;
+        cout << "Duration: " << duration << " hours\n";
+    }
+};
+
+Student students[100];
+int studentCount = 0;
+AttendanceSession session;

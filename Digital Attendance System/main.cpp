@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iostream>
 using namespace std;
+#include <fstream>
 
 class Student {
 private:
@@ -34,6 +35,27 @@ vector<Student> students;
 void addStudent() {
     void markAttendance() {
         void attendanceSummary() {
+            void saveAttendanceToFile() {
+
+    ofstream file("attendance.txt");
+
+    if(!file) {
+        cout << "Error saving file!" << endl;
+        return;
+    }
+
+    file << "Attendance Record\n";
+
+    for(int i=0; i<studentCount; i++) {
+        file << students[i].id << " "
+             << students[i].name << " "
+             << attendanceStatus[i] << endl;
+    }
+
+    file.close();
+
+    cout << "Attendance saved to file successfully!\n";
+}
 
     int present=0, absent=0, late=0;
 
@@ -90,6 +112,7 @@ int main() {
         cout << "3. Create Lecture Session\n";
         cout << "4. Mark Attendance\n";
         cout << "5. Attendance Summary\n";
+        cout << "6. Save Attendance to File\n";
         cout << "0. Exit\n";
         cout << "Enter choice: ";
         cin >> choice;
@@ -113,6 +136,9 @@ int main() {
                 attendanceSummary();
                 break;
             case 6:
+                saveAttendanceToFile();
+                break;
+            case 7:
                 cout << "Exiting program...\n";
                 break;
             default:
@@ -159,4 +185,5 @@ public:
 Student students[100];
 int studentCount = 0;
 AttendanceSession session;
+
 

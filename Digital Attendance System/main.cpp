@@ -32,6 +32,28 @@ vector<Student> students;
 
 // Function to register student
 void addStudent() {
+    void markAttendance() {
+        void attendanceSummary() {
+
+    int present=0, absent=0, late=0;
+
+    for(int i=0; i<studentCount; i++) {
+        if(attendanceStatus[i]=="P") present++;
+        else if(attendanceStatus[i]=="A") absent++;
+        else if(attendanceStatus[i]=="L") late++;
+    }
+
+    cout << "\nATTENDANCE SUMMARY\n";
+    cout << "Present: " << present << endl;
+    cout << "Absent: " << absent << endl;
+    cout << "Late: " << late << endl;
+}
+    for(int i = 0; i < studentCount; i++) {
+        cout << "Mark attendance for " << students[i].name << endl;
+        cout << "P = Present, A = Absent, L = Late: ";
+        cin >> attendanceStatus[i];
+    }
+}
     string name, index;
 
     cout << "Enter student name: ";
@@ -63,10 +85,11 @@ int main() {
     int choice;
 
     do {
-        cout << "\n=== DIGITAL ATTENDANCE SYSTEM ===\n";
         cout << "1. Register Student\n";
         cout << "2. View Students\n";
         cout << "3. Create Lecture Session\n";
+        cout << "4. Mark Attendance\n";
+        cout << "5. Attendance Summary\n";
         cout << "0. Exit\n";
         cout << "Enter choice: ";
         cin >> choice;
@@ -83,6 +106,13 @@ int main() {
                 session.displaySession();
                 break;
             case 4:
+                markAttendance();
+                break;
+
+            case 5:
+                attendanceSummary();
+                break;
+            case 6:
                 cout << "Exiting program...\n";
                 break;
             default:
@@ -129,3 +159,4 @@ public:
 Student students[100];
 int studentCount = 0;
 AttendanceSession session;
+
